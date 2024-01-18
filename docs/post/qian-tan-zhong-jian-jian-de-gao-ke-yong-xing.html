@@ -13,7 +13,8 @@
         else if(localStorage.getItem("meek_theme")=="light"){document.getElementsByTagName("html")[0].attributes.getNamedItem("data-color-mode").value="light";}
     </script>
     
-<title>Meekdai</title>
+<title>浅谈中间件的高可用性</title>
+
 
 </head>
 <style>
@@ -24,71 +25,113 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
 </style>
 
 <style>
-.avatar {transition: 0.8s;width:64px;height:64px;}
-.avatar:hover{transform: scale(1.15) rotate(360deg);}
-#header h1 a{color:inherit;text-decoration:none;vertical-align: bottom;font-size:40px;font-family:Monaco;margin-left:8px;}
+.postTitle{margin: auto 0;font-size:40px;font-weight:bold;}
 .title-right{display:flex;margin:auto 0 0 auto;}
-.title-right button{margin-right:8px;padding:16px;}
-.title-right .circle{padding: 14px 16px;}
-
-.SideNav{min-width: 360px;}
-.SideNav-icon{margin-right: 16px}
-.SideNav-item .Label{color: #fff;margin-left:8px;}
-.d-flex{min-width:0;}
-.listTitle{overflow:hidden;white-space:nowrap;text-overflow: ellipsis;max-width: 100%;}
-.listLabels{white-space:nowrap;}
-.listLabels object{max-height:16px;max-width:24px;}
-
+.title-right .circle{padding: 14px 16px;margin-right:8px;}
+#postBody{border-bottom: 1px solid var(--color-border-default);padding-bottom:36px;}
+#postBody hr{height:2px;}
+#cmButton{height:48px;margin-top:48px;}
+#comments{margin-top:64px;}
+.g-emoji{font-size:24px;}
 @media (max-width: 600px) {
     body {padding: 8px;}
-    .avatar {width:40px;height:40px;}
-    .blogTitle{display:none;}
-    #buttonRSS{display:none;}
-    .LabelTime{display:none;}
+    .postTitle{font-size:24px;}
 }
 </style>
 
 
+
+
 <body>
     <div id="header">
-<h1>
-    <img src="https://meekdai.com/avatar.svg" class="avatar circle" id="avatarImg" alt="avatar"><a class="blogTitle" href="https://meekdai.com">eekdai</a>
-    </h1>
+<span class="postTitle">浅谈中间件的高可用性</span>
 <div class="title-right">
-    <a href="https://blog.meekdai.com/tag.html"><button id="buttonSearch" class="btn btn-invisible circle" title="搜索">
-        <svg class="octicon" width="16" height="16" >
-            <path id="pathSearch" fill-rule="evenodd"></path>
+
+    <a href="https://blog.meekdai.com"><button id="buttonHome" class="btn btn-invisible circle" title="首页">
+        <svg class="octicon" width="16" height="16">
+            <path id="pathHome" fill-rule="evenodd" d="M6.906.664a1.749 1.749 0 0 1 2.187 0l5.25 4.2c.415.332.657.835.657 1.367v7.019A1.75 1.75 0 0 1 13.25 15h-3.5a.75.75 0 0 1-.75-.75V9H7v5.25a.75.75 0 0 1-.75.75h-3.5A1.75 1.75 0 0 1 1 13.25V6.23c0-.531.242-1.034.657-1.366l5.25-4.2Zm1.25 1.171a.25.25 0 0 0-.312 0l-5.25 4.2a.25.25 0 0 0-.094.196v7.019c0 .138.112.25.25.25H5.5V8.25a.75.75 0 0 1 .75-.75h3.5a.75.75 0 0 1 .75.75v5.25h2.75a.25.25 0 0 0 .25-.25V6.23a.25.25 0 0 0-.094-.195Z"></path>
         </svg>
     </button></a>
-    
-    <a href="https://blog.meekdai.com/rss.xml" target="_blank"><button id="buttonRSS" class="btn btn-invisible circle" title="RSS">
-        <svg class="octicon" width="16" height="16" >
-            <path id="pathRSS" fill-rule="evenodd"></path>
+
+    <a href="https://github.com/panyong/panyong.github.io/issues/1" target="_blank"><button class="btn btn-invisible circle" title="Issue">
+        <svg class="octicon" width="16" height="16">
+            <path id="pathIssue" fill-rule="evenodd" d="M8 0c4.42 0 8 3.58 8 8a8.013 8.013 0 0 1-5.45 7.59c-.4.08-.55-.17-.55-.38 0-.27.01-1.13.01-2.2 0-.75-.25-1.23-.54-1.48 1.78-.2 3.65-.88 3.65-3.95 0-.88-.31-1.59-.82-2.15.08-.2.36-1.02-.08-2.12 0 0-.67-.22-2.2.82-.64-.18-1.32-.27-2-.27-.68 0-1.36.09-2 .27-1.53-1.03-2.2-.82-2.2-.82-.44 1.1-.16 1.92-.08 2.12-.51.56-.82 1.28-.82 2.15 0 3.06 1.86 3.75 3.64 3.95-.23.2-.44.55-.51 1.07-.46.21-1.61.55-2.33-.66-.15-.24-.6-.83-1.23-.82-.67.01-.27.38.01.53.34.19.73.9.82 1.13.16.45.68 1.31 2.69.94 0 .67.01 1.3.01 1.49 0 .21-.15.45-.55.38A7.995 7.995 0 0 1 0 8c0-4.42 3.58-8 8-8Z"></path>
         </svg>
     </button></a>
-    <button class="btn btn-invisible circle" onclick="modeSwitch()" title="切换主题">
+
+    <button class="btn btn-invisible circle" onclick="modeSwitch();" title="切换主题">
         <svg class="octicon" width="16" height="16" >
             <path id="themeSwitch" fill-rule="evenodd"></path>
         </svg>
     </button>
+
 </div>
 </div>
     <div id="content">
-<div style="margin-bottom: 16px;">童话是一种生活态度，仅此而已。</div>
-<nav class="SideNav border">
-<a class="SideNav-item d-flex flex-items-center flex-justify-between" href="post/qian-tan-zhong-jian-jian-de-gao-ke-yong-xing.html">
-    <div class="d-flex flex-items-center">
-        <svg class="SideNav-icon octicon" style="witdh:16px;height:16px"><path class="svgTop0" d=""></path>
-        </svg>
-        <span class="listTitle">浅谈中间件的高可用性</span>
-    </div>
-    <div class="listLabels">
-        
-        <span class="Label LabelName" style="background-color:#fef2c0"><object><a style="color:#fff" href="https://blog.meekdai.com/tag.html#Blog">Blog</a></object></span>
-        <span class="Label LabelTime" style="background-color:#bc4c00">2024-01-18</span>
-    </div>
-</a>
-</nav>
+<div class="markdown-body" id="postBody">
+<p>[TOC]</p>
+<h2>前言</h2>
+<blockquote>
+<p>系统在面对 高并发、高性能、高可用 场景时，除了系统本身的优化外，往往被中间件的“三高”给限制，本文着重分析常见中间件(MySQL、Redis、Kafka)的高可用方案。</p>
+</blockquote>
+<h2>什么是高可用</h2>
+<p>高可用：High Availability，缩写HA，指系统无中断地执行其功能的能力，高可用性通过提高系统的容错能力来实现。</p>
+<h2>为什么要高可用</h2>
+<p>作为系统中最重要的中间件：关系型数据库MySQL，一定要保证高可用，否则系统无法进行读写，如果MySQL挂了，那么就可以认为系统宕机了。<br>
+类似地，如果系统依赖Redis作为业务处理流程中的节点(<em>非简单缓存</em>)，如果Redis挂了那么业务就无法进行下去；Kafka也是一样。</p>
+<h2>如何实现高可用</h2>
+<blockquote>
+<p>高可用的实现方式通常是提高系统的容错能力，能够在部分服务宕机的情况下实现自动故障转移。</p>
+</blockquote>
+<p>系统故障转移的基础：</p>
+<ol>
+<li>多副本节点；</li>
+<li>节点间数据的复制能力，即 Replication；</li>
+<li>理想状态下，任意时间点各个节点的数据一致；</li>
+<li>监控机制，节点发生故障时，监控系统能够知晓；</li>
+<li>选举机制，监控系统通过算法选举出能够替代故障节点的新节点负责对外服务。</li>
+</ol>
+<p>其中，1/4/5都能够完美地实现，而2/3的节点间的一致性复制能力则由于硬件性能、网络的不稳定性等原因，而出现不可控的误差。<br>
+为了解决节点间数据的一致性，通常会有不同的复制实现方案：</p>
+<table role="table">
+<thead>
+<tr>
+<th>方案</th>
+<th>实现</th>
+<th>优点</th>
+<th>缺点</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>异步复制</td>
+<td>主节点完成事务并写入日志后即返回响应，副本通过日志等方式进行同步</td>
+<td>1. 速度快，性能高</td>
+<td>1. 如果日志未同步给副本时主机故障，则导致一定的数据丢失</td>
+</tr>
+<tr>
+<td>半同步复制</td>
+<td>主节点等待一个副本ack后即返回响应</td>
+<td>1. 速度较快，能够保证至少一个副本有完整数据</td>
+<td>1. 如果副本响应缓慢，如大量读操作、硬件性能差等，会降低主节点性能</td>
+</tr>
+<tr>
+<td>全同步复制</td>
+<td>主节点等待半数以上的副本ack后才返回响应</td>
+<td>1. 确保多节点之间的数据的一致性</td>
+<td>1. 性能较差</td>
+</tr>
+</tbody>
+</table>
+<p>基本上多节点副本之间的复制方式就以上三种或其变种，可以看出它们是在数据一致性和性能之间做取舍。</p>
+<p>下面分别从三种中间件的高可用架构方案来分析：</p>
+<h3>MySQL</h3>
+<h3>Redis</h3>
+<h3>Kafka</h3>
+<h3>Others</h3>
+</div>
+<button class="btn btn-block" type="button" onclick="openComments()" id="cmButton">评论</button>
+<div class="comments" id="comments"></div>
 </div>
     <div id="footer">Copyright © <span id="year"></span><a href="https://blog.meekdai.com"> Meekdai </a>
 <p>
@@ -141,19 +184,45 @@ console.log("\n %c Gmeek last %c https://github.com/Meekdai/Gmeek \n\n", "color:
 </script>
 
 <script>
-document.getElementById("pathSearch").setAttribute("d",IconList["search"]);
-document.getElementById("pathRSS").setAttribute("d",IconList["rss"]);
-iconTOP=document.getElementsByClassName("svgTop1");
-iconPost=document.getElementsByClassName("svgTop0");
-for(var i=0;i<iconTOP.length;i++){
-    iconTOP[i].setAttribute("d",IconList["upload"]);
-    iconTOP[i].parentNode.style.color="red";
-}
-for(var i=0;i<iconPost.length;i++){
-    iconPost[i].setAttribute("d",IconList["post"]);
+
+
+
+function openComments(){
+    cm=document.getElementById("comments");
+    cmButton=document.getElementById("cmButton");
+    cmButton.innerHTML="loading";
+    span=document.createElement("span");
+    span.setAttribute("class","AnimatedEllipsis");
+    cmButton.appendChild(span);
+
+    script=document.createElement("script");
+    script.setAttribute("src","https://utteranc.es/client.js");
+    script.setAttribute("repo","panyong/panyong.github.io");
+    script.setAttribute("issue-term","title");
+    if(localStorage.getItem("meek_theme")=="dark"){script.setAttribute("theme","dark-blue");}
+    else{script.setAttribute("theme","github-light");}
+    script.setAttribute("crossorigin","anonymous");
+    script.setAttribute("async","");
+    cm.appendChild(script);
+
+    int=self.setInterval("iFrameLoading()",200);
 }
 
+function iFrameLoading(){
+    var utterances=document.getElementsByClassName('utterances');
+    if(utterances.length==1){
+        if(utterances[0].style.height!=""){
+            utterancesLoad=1;
+            int=window.clearInterval(int);
+            document.getElementById("cmButton").style.display="none";
+            console.log("utterances Load OK");
+        }
+    }
+}
 
 </script>
+
+
+
 
 </html>
