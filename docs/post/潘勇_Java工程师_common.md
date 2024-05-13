@@ -2,7 +2,7 @@
 
 - **手机**：18817352733
 - **Email**：18817352733@163.com
-- **微信**：<img src="https://img-blog.csdnimg.cn/20191219191510468.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3Bhbnlvbmdjc2Q=,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述" style="zoom:23%;" />
+- **微信**：<img src="https://img-blog.csdnimg.cn/20191219191510468.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3Bhbnlvbmdjc2Q=,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述" style="zoom:23 %;" />
 
 ## 个人技能
 - 具有中小型软件工程0--1的管理和开发经验，如系统设计、团队协作、软件质量管理；
