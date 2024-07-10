@@ -102,7 +102,7 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
 </ol>
 <p>其中，1/4/5都能够完美地实现，而2/3的节点间的一致性复制能力则由于硬件性能、网络的不稳定性等原因，而出现不可控的误差。<br>
 为了解决节点间数据的一致性，通常会有不同的复制实现方案：</p>
-<table role="table">
+<markdown-accessiblity-table><table role="table">
 <thead>
 <tr>
 <th>方案</th>
@@ -131,7 +131,7 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
 <td>1. 性能较差</td>
 </tr>
 </tbody>
-</table>
+</table></markdown-accessiblity-table>
 <p>基本上多节点副本之间的复制方式就以上三种或其变种，可以看出它们是在数据一致性和性能之间做取舍。</p>
 <p>下面分别从三种中间件的高可用架构方案来分析：</p>
 <h3>MySQL</h3>
